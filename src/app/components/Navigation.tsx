@@ -3,10 +3,15 @@
 import { SignInButton, UserButton } from "@clerk/nextjs";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { useCounterStore } from "../store";
 
 // aleksandrasvasinas+clerkmock@gmail.com
 // 1da907b00b1b03c0
 export const Navigation = () => {
+  console.log("Render Navigation");
+
+  const count = useCounterStore((store) => store.count);
+
   const pathname = usePathname();
 
   return (
@@ -22,6 +27,7 @@ export const Navigation = () => {
       </Link>
       <SignInButton mode="modal" />
       <UserButton />
+      <div>Count: {count}</div>
     </nav>
   );
 };
